@@ -1,0 +1,18 @@
+﻿
+var app = angular.module('myApp');
+app.controller('LoginController', function ($scope, $rootScope, $stateParams, $state, LoginService) {
+    $rootScope.title = "Login form";
+
+    $scope.formSubmit = function () {
+        debugger;
+        if (LoginService.login($scope.username, $scope.password)) {
+            $rootScope.userName = $scope.username;
+            $scope.error = '';
+            $scope.username = '';
+            $scope.password = '';
+            $state.transitionTo('home');
+        } else {
+            $scope.error = "Incorrect username/password !";
+        }
+    };
+});
